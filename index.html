@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#182d37" />
+  <link rel="icon" href="data:," />
+  <title>Cinderwick — Lantern Run</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="world" aria-label="3D Cinderwick town game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Cinderwick home"><span class="brand-mark">✦</span><span>CINDERWICK<span class="brand-sub">LANTERN RUN</span></span></a>
+      <div class="top-actions"><div class="day-pill"><span class="sun-dot"></span> GOLDEN HOUR</div><button id="sound-btn" class="icon-btn" aria-label="Toggle sound">♫</button><button id="pause-btn" class="icon-btn" aria-label="Pause game">Ⅱ</button></div>
+    </header>
+    <section class="hud" id="hud" aria-live="polite">
+      <div class="quest-card"><div class="quest-kicker"><span class="sparkle">✦</span> TODAY'S LITTLE ADVENTURE</div><div class="quest-title">Find the lost <em>emberstones</em></div><div class="quest-foot"><span class="quest-icon">◈</span><span id="quest-copy">The old mine is waiting...</span></div></div>
+      <div class="collect-card"><div class="collect-label">EMBERSTONES</div><div class="stone-count"><span id="stone-count">0</span><span class="stone-total"> / 6</span><span class="stone-gem">◆</span></div><div class="stone-track"><i id="stone-progress"></i></div></div>
+    </section>
+    <div id="toast" class="toast" role="status"></div>
+    <div id="start-screen" class="screen-cover">
+      <div class="intro-card">
+        <div class="eyebrow"><span></span> A SMALL-TOWN BIG ADVENTURE</div>
+        <h1>Take the<br><em>scenic route.</em></h1>
+        <p>Twilight is settling over Cinderwick. Find the little emberstones scattered along the old railway, then bring their glow back to the mine tram.</p>
+        <div class="intro-meta"><div class="avatar-mini">☼</div><div><b>Ada's on the case</b><small>Explorer · amateur bug collector</small></div><div class="weather">☀  19°</div></div>
+        <button id="play-btn" class="primary-btn">LET'S WANDER <span>→</span></button>
+        <div class="control-hint">MOVE <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>·</span> JUMP <kbd>SPACE</kbd> <span class="touch-note">Touch controls appear in-game</span></div>
+      </div>
+      <div class="cover-caption"><span>01</span> CINDERWICK, WHERE THE HILLS HUM AT DUSK</div>
+    </div>
+    <div id="pause-screen" class="modal-screen hidden"><div class="modal-card"><span class="modal-symbol">Ⅱ</span><h2>Taking a breather?</h2><p>The evening isn't going anywhere.</p><button id="resume-btn" class="primary-btn">BACK TO WANDERING <span>→</span></button></div></div>
+    <div id="finish-screen" class="modal-screen hidden"><div class="modal-card finish-card"><span class="modal-symbol">✦</span><div class="eyebrow">A CINDERWICK EVENING</div><h2>You brought the<br><em>glow back.</em></h2><p>The old tram lights up, and somewhere in the hills a little bell rings. Not a bad way to spend a day.</p><div class="finish-stats"><span>EMBERSTONES</span><b>6 / 6</b><span>TIME TO WANDER</span><b id="finish-time">00:00</b></div><button id="again-btn" class="primary-btn">WANDER AGAIN <span>↻</span></button></div></div>
+    <div class="bottom-hud"><div class="location"><span class="location-pin">⌖</span><div><b id="location-name">THE OLD LANTERN SQUARE</b><small>Cinderwick village</small></div></div><div class="minimap-frame"><div class="map-label">YOUR LITTLE MAP</div><div id="minimap" class="minimap"><div class="map-road"></div><div class="map-tram">✦</div><div class="map-player">●</div><div class="map-dots"></div></div></div><div class="control-legend"><kbd>WASD</kbd><span>to wander</span><kbd>SPACE</kbd><span>hop</span></div></div>
+    <div id="touch-controls" class="touch-controls" aria-label="Touch movement controls"><div class="dpad"><button data-dir="up" aria-label="Move forward">▲</button><div><button data-dir="left" aria-label="Move left">◀</button><button data-dir="down" aria-label="Move backward">▼</button><button data-dir="right" aria-label="Move right">▶</button></div></div><button id="jump-btn" class="jump-btn"><span>↟</span>HOP</button></div>
+    <div id="collect-prompt" class="collect-prompt hidden"><span>✦</span> WANDER CLOSER</div>
+    <div class="loading" id="loading"><span class="loading-star">✦</span><span>Waking up the town...</span></div>
+  </main>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
